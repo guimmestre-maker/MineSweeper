@@ -1,6 +1,6 @@
 # Projeto_Poo
 
-# Campo Minado
+# MineSweeper
 
 Projeto da cadeira de Programação Orientada a Objetos (POO), do 1º ano da LEI na EST Setúbal. Versão em Java do MineSweeper, com interface JavaFX.
 
