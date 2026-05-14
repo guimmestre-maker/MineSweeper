@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public class CelulaBomba extends Celula {
 

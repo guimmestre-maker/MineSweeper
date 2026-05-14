@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public enum SituacaoJogo {
     EM_CURSO,

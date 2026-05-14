@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public class CelulaVazia extends Celula{
     public CelulaVazia(int var1, int var2) {

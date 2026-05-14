@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public class CelulaNr extends Celula{
     private int numeroBombas;

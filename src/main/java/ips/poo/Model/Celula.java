@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public abstract class Celula {
     private int linha;

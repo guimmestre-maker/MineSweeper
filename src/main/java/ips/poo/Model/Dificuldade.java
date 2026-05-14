@@ -1,4 +1,4 @@
-package org.example;
+package ips.poo.Model;
 
 public enum Dificuldade {
     FACIL(9, 9, 10),
