@@ -4,7 +4,6 @@ import ips.poo.Model.Dificuldade;
 import ips.poo.Model.Tabuleiro;
 import ips.poo.View.Menu;
 import javafx.application.Application;
-import javafx.scene.chart.StackedBarChart;
 import javafx.stage.Stage;
 
 import static javafx.application.Application.launch;

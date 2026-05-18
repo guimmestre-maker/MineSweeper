@@ -57,7 +57,8 @@ public class Menu {
         }
 
         private void iniciarJogo(Dificuldade dif) {
-            // TODO: stage.setScene(new JogoView(stage, dif).criarScene());
+            stage.setScene(new Jogo.JogoView(stage, dif).criarScene());
+
 
         }
     }
