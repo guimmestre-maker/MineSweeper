@@ -3,9 +3,9 @@ package ips.poo.Model;
 public class CelulaNr extends Celula{
     private int numeroBombas;
 
-    public CelulaNr(int var1, int var2, int var3) {
-        super(var1, var2);
-        this.numeroBombas = var3;
+    public CelulaNr(int linhas, int colunas, int nrbomb) {
+        super(linhas, colunas);
+        this.numeroBombas = nrbomb;
     }
 
     @Override

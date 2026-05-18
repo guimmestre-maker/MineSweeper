@@ -29,9 +29,9 @@ public abstract class Celula {
         return this.revelada;
     }
 
-    public void setRevelada(boolean var1) {
+    public void setRevelada(boolean rev) {
 
-        this.revelada = var1;
+        this.revelada = rev;
     }
 
     public boolean isTemBandeira() {
@@ -39,8 +39,8 @@ public abstract class Celula {
         return this.temBandeira;
     }
 
-    public void setTemBandeira(boolean var1) {
+    public void setTemBandeira(boolean ban) {
 
-        this.temBandeira = var1;
+        this.temBandeira = ban;
     }
 }

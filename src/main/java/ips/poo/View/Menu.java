@@ -27,6 +27,7 @@ public class Menu {
 
             Label titulo = new Label("MineSweeper");
             titulo.setFont(Font.font("Monospaced", FontWeight.BOLD, 32));
+            titulo.setTextFill(Color.RED);
 
             Label subtitulo = new Label("Escolhe a dificuldade");
             subtitulo.setFont(Font.font("Monospaced", 14));
@@ -57,6 +58,7 @@ public class Menu {
 
         private void iniciarJogo(Dificuldade dif) {
             // TODO: stage.setScene(new JogoView(stage, dif).criarScene());
+
         }
     }
 }
