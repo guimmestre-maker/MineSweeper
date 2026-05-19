@@ -34,8 +34,11 @@ public class Menu {
             subtitulo.setTextFill(Color.GRAY);
 
             Button btnFacil   = criarBotao("Fácil\n9×9 | 10 bombas",     Dificuldade.FACIL);
+            btnFacil.setStyle("-fx-cursor: hand;");
             Button btnMedio   = criarBotao("Médio\n16×16 | 40 bombas",   Dificuldade.MEDIO);
+            btnMedio.setStyle("-fx-cursor: hand;");
             Button btnDificil = criarBotao("Difícil\n16×30 | 99 bombas", Dificuldade.DIFICIL);
+            btnDificil.setStyle("-fx-cursor: hand;");
 
             VBox opcoes = new VBox(12, btnFacil, btnMedio, btnDificil);
             opcoes.setAlignment(Pos.CENTER);
