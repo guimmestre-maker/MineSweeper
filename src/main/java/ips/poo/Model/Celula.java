@@ -1,46 +1,56 @@
 package ips.poo.Model;
 
 public abstract class Celula {
-    private int linha;
-    private int coluna;
-    private boolean revelada;
-    private boolean temBandeira;
 
-    public Celula(int linhas, int colunas ){
-        this.linha = linhas;
-        this.coluna = colunas;
+    private final int linha;
+    private final int coluna;
+    private boolean revelada;
+    private boolean marcada;
+
+    public Celula(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
         this.revelada = false;
-        this.temBandeira = false;
+        this.marcada = false;
     }
-    public abstract void revelar();
 
     public int getLinha() {
-
-        return this.linha;
+        return linha;
     }
 
     public int getColuna() {
-
-        return this.coluna;
+        return coluna;
     }
 
-    public boolean isRevelada() {
-
-        return this.revelada;
+    public boolean estaRevelada() {
+        return revelada;
     }
 
-    public void setRevelada(boolean rev) {
-
-        this.revelada = rev;
+    public boolean estaMarcada() {
+        return marcada;
     }
 
-    public boolean isTemBandeira() {
-
-        return this.temBandeira;
+    public void revelar() {
+        this.revelada = true;
     }
 
-    public void setTemBandeira(boolean ban) {
+    public void marcar() {
+        this.marcada = true;
+    }
 
-        this.temBandeira = ban;
+    public void desmarcar() {
+        this.marcada = false;
+    }
+
+    public boolean temMina() {
+        return false;
+    }
+
+    public boolean eVazia() {
+        return false;
+    }
+
+    public int getValor() {
+        return 0;
     }
 }
