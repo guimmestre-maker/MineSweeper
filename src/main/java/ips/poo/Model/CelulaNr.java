@@ -1,25 +1,20 @@
 package ips.poo.Model;
 
-public class CelulaNr extends Celula{
-    private int numeroBombas;
+public class CelulaNr extends Celula {
 
-    public CelulaNr(int linhas, int colunas, int nrbomb) {
-        super(linhas, colunas);
-        this.numeroBombas = nrbomb;
+    private final int minasVizinhas;
+
+    public CelulaNr(int linha, int coluna, int minasVizinhas) {
+        super(linha, coluna);
+        this.minasVizinhas = minasVizinhas;
+    }
+
+    public int getMinasVizinhas() {
+        return minasVizinhas;
     }
 
     @Override
-    public void revelar() {
-
-    }
-
-    public int getNumeroBombas() {
-
-        return this.numeroBombas;
-    }
-
-    public void setNumeroBombas(int var1) {
-
-        this.numeroBombas = var1;
+    public int getValor() {
+        return minasVizinhas;
     }
 }

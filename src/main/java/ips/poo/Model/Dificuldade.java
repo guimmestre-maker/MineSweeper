@@ -7,12 +7,12 @@ public enum Dificuldade {
 
     private final int linhas;
     private final int colunas;
-    private final int numeroBombas;
+    private final int numeroMinas;
 
-    private Dificuldade(int linhas, int colunas, int bombas) {
+    private Dificuldade(int linhas, int colunas, int minas) {
         this.linhas = linhas;
         this.colunas = colunas;
-        this.numeroBombas = bombas;
+        this.numeroMinas = minas;
     }
 
     public int getLinhas() {
@@ -25,8 +25,8 @@ public enum Dificuldade {
         return this.colunas;
     }
 
-    public int getNumeroBombas() {
+    public int getNumeroMinas() {
 
-        return this.numeroBombas;
+        return this.numeroMinas;
     }
 }

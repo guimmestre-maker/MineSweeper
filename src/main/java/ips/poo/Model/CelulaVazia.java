@@ -1,11 +1,13 @@
 package ips.poo.Model;
 
-public class CelulaVazia extends Celula{
-    public CelulaVazia(int linhas, int colunas) {
-        super(linhas, colunas);
+public class CelulaVazia extends Celula {
+
+    public CelulaVazia(int linha, int coluna) {
+        super(linha, coluna);
     }
 
-    public void revelar() {
-
+    @Override
+    public boolean eVazia() {
+        return true;
     }
 }
