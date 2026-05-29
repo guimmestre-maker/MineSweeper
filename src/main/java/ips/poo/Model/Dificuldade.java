@@ -1,6 +1,7 @@
 package ips.poo.Model;
 
 public enum Dificuldade {
+    // Definimos os três modos clássicos de jogo com os tamanhos oficiais do Campo Minado
     FACIL(9, 9, 10),
     MEDIO(16, 16, 40),
     DIFICIL(16, 30, 99);
@@ -10,6 +11,17 @@ public enum Dificuldade {
     private final int numeroMinas;
 
     private Dificuldade(int linhas, int colunas, int minas) {
+        // Blindagem do construtor: garante que nenhuma configuração futura do Enum quebre as regras do jogo (valores negativos ou zero)
+        if (linhas <= 0 || colunas <= 0 || minas <= 0) {
+            throw new IllegalArgumentException("As dimensões e o número de minas da dificuldade devem ser maiores que zero!");
+        }
+
+        // Validação lógica extra: impede a criação de um modo de jogo onde haja mais minas do que espaços disponíveis no tabuleiro
+        if (minas >= (linhas * colunas)) {
+            throw new IllegalArgumentException("Configuração impossível: o número de minas não pode preencher todo o tabuleiro!");
+        }
+
+        // Guardamos as configurações de cada nível de forma imutável assim que o Enum é carregado
         this.linhas = linhas;
         this.colunas = colunas;
         this.numeroMinas = minas;

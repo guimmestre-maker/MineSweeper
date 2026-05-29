@@ -15,6 +15,13 @@ public class Tabuleiro {
         this.linhas = dificuldade.getLinhas();
         this.colunas = dificuldade.getColunas();
         this.numeroMinas = dificuldade.getNumeroMinas();
+
+        // Defesa preventiva: se alguém tentar criar um mapa com mais bombas do que espaço físico,
+        // paramos logo o processo aqui com uma exceção clara.
+        if (numeroMinas >= (linhas * colunas)) {
+            throw new IllegalArgumentException("Demasiadas minas para o tamanho do tabuleiro escolhido!");
+        }
+
         this.celulas = new Celula[linhas][colunas];
         this.situacao = SituacaoJogo.EM_CURSO;
         this.celulasReveladas = 0;
@@ -36,7 +43,7 @@ public class Tabuleiro {
         }
     }
 
-    private void preencherCelulasRestantes() {
+    private void preencherCelulasRestantes(){
         for (int l = 0; l < linhas; l++) {
             for (int c = 0; c < colunas; c++) {
                 if (celulas[l][c] == null) {
@@ -58,7 +65,6 @@ public class Tabuleiro {
                 if (dl == 0 && dc == 0) continue;
                 int vl = linha + dl;
                 int vc = coluna + dc;
-                // depois
                 if (dentroDosLimites(vl, vc)
                         && celulas[vl][vc] != null
                         && celulas[vl][vc].temMina()) {
@@ -74,10 +80,18 @@ public class Tabuleiro {
     }
 
     public void revelar(int linha, int coluna) {
+        // Se o jogo já acabou (Vitória ou Derrota), não faz sentido processar cliques.
         if (situacao != SituacaoJogo.EM_CURSO) return;
-        if (!dentroDosLimites(linha, coluna)) return;
+
+        // Se a interface gráfica ou o terminal nos enviarem coordenadas absurdas,
+        // lançamos uma exceção para que quem chamou o método saiba que enviou dados inválidos.
+        if (!dentroDosLimites(linha, coluna)) {
+            throw new IllegalArgumentException("Coordenadas inválidas! Posição (" + linha + "," + coluna + ") está fora do tabuleiro.");
+        }
 
         Celula celula = celulas[linha][coluna];
+
+        // Clicar numa célula já aberta ou com bandeira é uma jogada neutra. Não faz nada, mas também não é um erro grave.
         if (celula.estaRevelada() || celula.estaMarcada()) return;
 
         celula.revelar();
@@ -94,7 +108,14 @@ public class Tabuleiro {
             for (int dl = -1; dl <= 1; dl++) {
                 for (int dc = -1; dc <= 1; dc++) {
                     if (dl == 0 && dc == 0) continue;
-                    revelar(linha + dl, coluna + dc);
+                    // Chamada recursiva segura. Como o método "dentroDosLimites" é verificado na linha 76,
+                    // a recursão vai parar naturalmente quando atingir as bordas do tabuleiro.
+                    try {
+                        revelar(linha + dl, coluna + dc);
+                    } catch (IllegalArgumentException e) {
+                        // Ignoramos em silêncio os erros dos vizinhos na recursão, pois ao expandir as células vazias
+                        // é normal ele tentar "olhar" para lá das bordas do mapa (ex: linha -1).
+                    }
                 }
             }
         }
@@ -116,7 +137,11 @@ public class Tabuleiro {
 
     public void marcar(int linha, int coluna) {
         if (situacao != SituacaoJogo.EM_CURSO) return;
-        if (!dentroDosLimites(linha, coluna)) return;
+
+        // Mesma proteção que usamos no revelar: se a coordenada não existir, disparamos o erro.
+        if (!dentroDosLimites(linha, coluna)) {
+            throw new IllegalArgumentException("Não podes colocar uma bandeira fora do tabuleiro!");
+        }
 
         Celula celula = celulas[linha][coluna];
         if (celula.estaRevelada()) return;
@@ -129,6 +154,10 @@ public class Tabuleiro {
     }
 
     public Celula getCelula(int linha, int coluna) {
+        // Proteção para garantir que consultas ao estado das células não partam a aplicação.
+        if (!dentroDosLimites(linha, coluna)) {
+            throw new IllegalArgumentException("Posição consultada está fora do mapa.");
+        }
         return celulas[linha][coluna];
     }
 
