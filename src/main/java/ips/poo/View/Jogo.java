@@ -20,6 +20,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.media.AudioClip;
+
 
 public class Jogo {
 
@@ -209,7 +211,7 @@ public class Jogo {
             alert.setHeaderText(null);
             alert.showAndWait();
             stage.setScene(new Menu.MenuView(stage).criarScene());
-
         }
+
     }
 }
