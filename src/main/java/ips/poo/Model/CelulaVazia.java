@@ -13,7 +13,7 @@ public class CelulaVazia extends Celula {
 
     @Override
     public boolean eVazia() {
-        // Método crucial para o tabuleiro saber que, ao clicar aqui, pode disparar a abertura em cascata dos vizinhos.
+        // Saber que, ao clicar aqui, pode disparar a abertura em cascata dos vizinhos.
         return true;
     }
 }

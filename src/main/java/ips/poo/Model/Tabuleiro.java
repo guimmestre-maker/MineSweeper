@@ -16,8 +16,7 @@ public class Tabuleiro {
         this.colunas = dificuldade.getColunas();
         this.numeroMinas = dificuldade.getNumeroMinas();
 
-        // Defesa preventiva: se alguém tentar criar um mapa com mais bombas do que espaço físico,
-        // paramos logo o processo aqui com uma exceção clara.
+        // Se alguém tentar criar um mapa com mais bombas do que espaço físico, paramos logo o processo aqui com uma exceção
         if (numeroMinas >= (linhas * colunas)) {
             throw new IllegalArgumentException("Demasiadas minas para o tamanho do tabuleiro escolhido!");
         }
@@ -80,18 +79,17 @@ public class Tabuleiro {
     }
 
     public void revelar(int linha, int coluna) {
-        // Se o jogo já acabou (Vitória ou Derrota), não faz sentido processar cliques.
+        // Se o jogo já acabou (Vitória ou Derrota), não faz sentido processar cliques
         if (situacao != SituacaoJogo.EM_CURSO) return;
 
-        // Se a interface gráfica ou o terminal nos enviarem coordenadas absurdas,
-        // lançamos uma exceção para que quem chamou o método saiba que enviou dados inválidos.
+        // Se a interface gráfica ou o terminal nos enviarem coordenadas absurdas, lançamos uma exceção para que quem chamou o método saiba que enviou dados inválidos.
         if (!dentroDosLimites(linha, coluna)) {
             throw new IllegalArgumentException("Coordenadas inválidas! Posição (" + linha + "," + coluna + ") está fora do tabuleiro.");
         }
 
         Celula celula = celulas[linha][coluna];
 
-        // Clicar numa célula já aberta ou com bandeira é uma jogada neutra. Não faz nada, mas também não é um erro grave.
+        // Clicar numa célula já aberta ou com bandeira não faz nada.
         if (celula.estaRevelada() || celula.estaMarcada()) return;
 
         celula.revelar();
@@ -108,13 +106,11 @@ public class Tabuleiro {
             for (int dl = -1; dl <= 1; dl++) {
                 for (int dc = -1; dc <= 1; dc++) {
                     if (dl == 0 && dc == 0) continue;
-                    // Chamada recursiva segura. Como o método "dentroDosLimites" é verificado na linha 76,
-                    // a recursão vai parar naturalmente quando atingir as bordas do tabuleiro.
+                    // Chamada recursiva segura. Como o método "dentroDosLimites" é verificado na linha 76, a recursão vai parar naturalmente quando atingir as bordas do tabuleiro.
                     try {
                         revelar(linha + dl, coluna + dc);
                     } catch (IllegalArgumentException e) {
-                        // Ignoramos em silêncio os erros dos vizinhos na recursão, pois ao expandir as células vazias
-                        // é normal ele tentar "olhar" para lá das bordas do mapa (ex: linha -1).
+                        // Ignoramos em silêncio os erros dos vizinhos na recursão, pois ao expandir as células vazias é normal ele tentar "olhar" para lá das bordas do mapa (ex: linha -1)
                     }
                 }
             }
@@ -138,7 +134,7 @@ public class Tabuleiro {
     public void marcar(int linha, int coluna) {
         if (situacao != SituacaoJogo.EM_CURSO) return;
 
-        // Mesma proteção que usamos no revelar: se a coordenada não existir, disparamos o erro.
+        // Mesma proteção que usamos no revelar: se a coordenada não existir, disparamos o erro
         if (!dentroDosLimites(linha, coluna)) {
             throw new IllegalArgumentException("Não podes colocar uma bandeira fora do tabuleiro!");
         }
@@ -154,7 +150,7 @@ public class Tabuleiro {
     }
 
     public Celula getCelula(int linha, int coluna) {
-        // Proteção para garantir que consultas ao estado das células não partam a aplicação.
+        // Proteção para garantir que consultas ao estado das células não partam a aplicação
         if (!dentroDosLimites(linha, coluna)) {
             throw new IllegalArgumentException("Posição consultada está fora do mapa.");
         }

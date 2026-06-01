@@ -12,7 +12,7 @@ public class CelulaMina extends Celula {
 
     @Override
     public boolean temMina() {
-        // Esta subclasse serve especificamente para representar as armadilhas, por isso responde sempre que sim
+        // Esta subclasse serve especificamente para representar as armadilhas,por isso responde sempre que sim
         return true;
     }
 }

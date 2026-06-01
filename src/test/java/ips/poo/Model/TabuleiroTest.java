@@ -40,7 +40,7 @@ class TabuleiroTest {
 
     @Test
     void marcarCelulaMudaEstadoEPermiteDesmarcar() {
-        // Se o jogador clicar com o botão direito, mete a bandeira. Se clicar outra vez, tira.
+        // Se o jogador clicar com o botão direito, mete a bandeira, se clicar outra vez, tira
         tabuleiro.marcar(0, 0);
         assertTrue(tabuleiro.getCelula(0, 0).estaMarcada());
 
@@ -56,7 +56,7 @@ class TabuleiroTest {
             c++;
         }
 
-        // Revela a célula e depois tenta meter-lhe uma bandeira. O jogo deve ignorar a marcação.
+        // Revela a célula e depois tenta meter-lhe uma bandeira. O jogo deve ignorar a marcação
         tabuleiro.revelar(l, c);
         assertTrue(tabuleiro.getCelula(l, c).estaRevelada());
 

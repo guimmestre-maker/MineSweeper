@@ -11,12 +11,12 @@ public enum Dificuldade {
     private final int numeroMinas;
 
     private Dificuldade(int linhas, int colunas, int minas) {
-        // Blindagem do construtor: garante que nenhuma configuração futura do Enum quebre as regras do jogo (valores negativos ou zero)
+        // Garante que nenhuma configuração futura do Enum quebre as regras do jogo
         if (linhas <= 0 || colunas <= 0 || minas <= 0) {
             throw new IllegalArgumentException("As dimensões e o número de minas da dificuldade devem ser maiores que zero!");
         }
 
-        // Validação lógica extra: impede a criação de um modo de jogo onde haja mais minas do que espaços disponíveis no tabuleiro
+        // Impede a criação de um modo de jogo onde haja mais minas do que espaços disponíveis no tabuleiro
         if (minas >= (linhas * colunas)) {
             throw new IllegalArgumentException("Configuração impossível: o número de minas não pode preencher todo o tabuleiro!");
         }
