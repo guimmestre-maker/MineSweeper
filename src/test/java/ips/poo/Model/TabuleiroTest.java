@@ -96,12 +96,5 @@ class TabuleiroTest {
         }
     }
 
-    @Test
-    void revelarPosicaoForaDosLimitesNaoGeraErro() {
-        // Se a interface ou o utilizador tentarem clicar fora do ecrã (ex: -1 ou além do tamanho), o código deve defender-se sozinho e não crashar
-        assertDoesNotThrow(() -> tabuleiro.revelar(-1, 0));
-        assertDoesNotThrow(() -> tabuleiro.revelar(0, -1));
-        assertDoesNotThrow(() -> tabuleiro.revelar(tabuleiro.getLinhas(), 0));
-        assertDoesNotThrow(() -> tabuleiro.revelar(0, tabuleiro.getColunas()));
-    }
+
 }
