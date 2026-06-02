@@ -129,12 +129,20 @@ public class Jogo {
                     cel.setStyle(Estilos.CELULA);
 
                     cel.setOnMouseEntered(e -> {
-                        if (!tabuleiro.getCelula(linha, coluna).estaRevelada()) {
+                        Celula g = tabuleiro.getCelula(linha, coluna);
+                        if (g.estaRevelada()) return;
+                        if (g.estaMarcada()) {
+                            cel.setStyle(Estilos.CELULA_HOVER + ";-fx-font-size: 10px;");
+                        } else {
                             cel.setStyle(Estilos.CELULA_HOVER);
                         }
                     });
                     cel.setOnMouseExited(e -> {
-                        if (!tabuleiro.getCelula(linha, coluna).estaRevelada()) {
+                        Celula g = tabuleiro.getCelula(linha, coluna);
+                        if (g.estaRevelada()) return;
+                        if (g.estaMarcada()) {
+                            cel.setStyle(Estilos.CELULA + ";-fx-font-size: 10px;");
+                        } else {
                             cel.setStyle(Estilos.CELULA);
                         }
                     });
@@ -182,18 +190,19 @@ public class Jogo {
 
             if (celula.estaRevelada()) {
                 if (celula.temMina()) {
-                    botao.setText("✸");
-                    botao.setStyle(Estilos.CELULA_BOMBA);
+                        botao.setText("✸");
+                        botao.setStyle(Estilos.CELULA_BOMBA + ";-fx-font-size: 10px;");
+
                 } else if (celula.getValor() > 0) {
                     botao.setText(String.valueOf(celula.getValor()));
                     botao.setStyle(Estilos.celulaNumero(celula.getValor()));
                 } else {
-                    botao.setText("");
                     botao.setStyle(Estilos.CELULA_REVELADA);
                 }
             } else if (celula.estaMarcada()) {
                 botao.setText("⚑");
-                botao.setStyle(Estilos.CELULA);
+                botao.setStyle(Estilos.CELULA + ";-fx-font-size: 10px;");
+
             } else {
                 botao.setText("");
                 botao.setStyle(Estilos.CELULA);

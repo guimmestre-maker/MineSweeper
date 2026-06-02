@@ -32,10 +32,6 @@ public abstract class Celula {
     }
 
     public void revelar() {
-        // Segurança ativa: impede que o jogo revele acidentalmente uma célula protegida por uma bandeira
-        if (this.marcada) {
-            throw new IllegalStateException("Não é possível revelar uma célula que está marcada com uma bandeira!");
-        }
         this.revelada = true;
     }
 
